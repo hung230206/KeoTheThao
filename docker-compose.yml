@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: keo-the-thao-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keo_the_thao
+      POSTGRES_USER: keo_the_thao
+      POSTGRES_PASSWORD: keo_the_thao
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keo_the_thao -d keo_the_thao"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:
+

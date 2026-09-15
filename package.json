@@ -1,0 +1,30 @@
+{
+  "name": "keo-the-thao",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KeoTheThao web monorepo with Next.js frontend and NestJS backend.",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,green \"npm run dev -w apps/web\" \"npm run dev -w apps/api\"",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "format": "prettier --write .",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "api:migration:generate": "npm run migration:generate -w apps/api",
+    "api:migration:run": "npm run migration:run -w apps/api",
+    "api:migration:revert": "npm run migration:revert -w apps/api"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "prettier": "^3.6.2",
+    "typescript": "6.0.3"
+  }
+}
