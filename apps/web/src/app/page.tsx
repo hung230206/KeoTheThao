@@ -2,14 +2,6 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
 
 export default function Home() {
   return (
-    <div className="shell">
-      <header className="topbar">
-        <div className="topbar-inner">
-          <div className="brand">KeoTheThao</div>
-          <div className="status">Next.js + NestJS + PostgreSQL</div>
-        </div>
-      </header>
-
       <main className="main">
         <section className="hero">
           <div className="eyebrow">Project starter</div>
@@ -50,7 +42,6 @@ export default function Home() {
           </article>
         </section>
       </main>
-    </div>
   );
 }
 

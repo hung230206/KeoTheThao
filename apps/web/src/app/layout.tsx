@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { TopNavigation } from "../components/top-navigation";
+import { AuthProvider } from "../context/auth-context";
 
 export const metadata: Metadata = {
   title: "KeoTheThao",
@@ -13,7 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <div className="shell">
+            <TopNavigation />
+            {children}
+          </div>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
