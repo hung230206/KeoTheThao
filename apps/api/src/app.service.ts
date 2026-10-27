@@ -6,8 +6,7 @@ export class AppService {
     return {
       status: "ok",
       service: "keo-the-thao-api",
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 }
-

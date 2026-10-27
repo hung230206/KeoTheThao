@@ -1,0 +1,40 @@
+name: Quality checks
+
+on:
+  push:
+    branches: [main, "codex/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: keo_the_thao
+          POSTGRES_USER: keo_the_thao
+          POSTGRES_PASSWORD: keo_the_thao
+        ports:
+          - 55432:5432
+        options: >-
+          --health-cmd "pg_isready -U keo_the_thao -d keo_the_thao"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run setup
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm run test:e2e

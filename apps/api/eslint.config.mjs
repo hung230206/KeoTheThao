@@ -11,14 +11,14 @@ export default [
     languageOptions: {
       parser: tsParser,
       globals: {
-        process: "readonly"
+        process: "readonly",
       },
       parserOptions: {
-        project: "./tsconfig.json"
-      }
+        project: "./tsconfig.json",
+      },
     },
     plugins: {
-      "@typescript-eslint": tseslint
+      "@typescript-eslint": tseslint,
     },
     rules: {
       "no-undef": "off",
@@ -26,9 +26,9 @@ export default [
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          "argsIgnorePattern": "^_"
-        }
-      ]
-    }
-  }
+          argsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
 ];

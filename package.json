@@ -6,20 +6,32 @@
   "workspaces": [
     "apps/*"
   ],
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/platform-express": "12.2.0"
+  },
+  "overrides": {
+    "multer": "2.5.0",
+    "source-map-js": "1.2.2"
+  },
   "scripts": {
     "dev": "concurrently -n web,api -c cyan,green \"npm run dev -w apps/web\" \"npm run dev -w apps/api\"",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "format": "prettier --write .",
-    "db:up": "docker compose up -d postgres",
+    "setup": "node scripts/setup.mjs",
+    "db:seed": "npm run seed -w apps/api",
+    "test:e2e": "npm run build -w apps/api && node --test apps/api/test/e2e/*.test.cjs",
+    "db:up": "docker compose up -d --wait postgres",
     "db:down": "docker compose down",
     "api:migration:generate": "npm run migration:generate -w apps/api",
     "api:migration:run": "npm run migration:run -w apps/api",
     "api:migration:revert": "npm run migration:revert -w apps/api"
   },
   "engines": {
-    "node": ">=22.0.0",
+    "node": ">=24.0.0",
     "npm": ">=10.0.0"
   },
   "devDependencies": {

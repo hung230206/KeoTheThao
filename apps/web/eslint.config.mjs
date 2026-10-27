@@ -3,10 +3,10 @@ import nextTypescript from "eslint-config-next/typescript";
 
 const eslintConfig = [
   {
-    ignores: ["next-env.d.ts", ".next/**"]
+    ignores: ["next-env.d.ts", ".next/**"],
   },
   ...nextCoreWebVitals,
-  ...nextTypescript
+  ...nextTypescript,
 ];
 
 export default eslintConfig;
